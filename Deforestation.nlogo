@@ -15,7 +15,7 @@ end
 
 to setup-patches
   resize-world -20 20 -20 20
-  ask patches [set pcolor red]
+  ask patches [set pcolor green]
   ask patches with [pxcor >= -10 and pxcor <= -3 and pycor >= -10 and pycor <= -3][
     set pcolor orange
   ]
@@ -24,32 +24,26 @@ end
 to setup-turtles
   create-turtles 100
   ask turtles [ set shape "person" ]
-  ask turtles [
-    if pcolor = green
-     [ setxy random-xcor random-ycor ]
-  ]
+  ask turtles [ setxy random-xcor random-ycor ]
 end
 
 to go
   if ticks >= 300 [ stop ]
   move-turtles
-  avoid-home
   deforest
+  avoid-home
   tick
 end
 
 to deforest
   ask turtles [
-    if pcolor = red [
+    if pcolor = green [
       set pcolor black]
   ]
 end
 
 to avoid-home
-  ask turtles [
-  if [pcolor] of patch-ahead 1 = orange
-    [set heading heading - 180]
-  ]
+  if [pcolor] of patch-ahead 1 = orange [set heading heading - 180]
 end
 
 to move-turtles
@@ -57,7 +51,6 @@ to move-turtles
     fd deforestation-rate
   ]
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
